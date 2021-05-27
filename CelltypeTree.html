@@ -1,0 +1,6683 @@
+<!DOCTYPE >
+
+<html lang="en" >
+  <head>
+    <TITLE> Cell-type Tree </TITLE>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="css/demo.css" type="text/css">
+    <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- <script type="text/javascript" src="/ztree_v3/api/apiCss/jquery-1.6.2.min.js"></script> -->
+    <script type="text/javascript" src="api/apiCss/jquery-1.6.2.min.js" ></script>
+    <script type="text/javascript" src="api/apiCss/jquery.ztree.core.js"></script>
+  </head>
+  <body>
+      <!-- Page Wrapper -->
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div class="sidebar-brand-icon rotate-n-15">
+              <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-4">Cell Tree</div>
+        </a>
+        <div class="center">
+            <div class="btn-group ">
+                <button onclick="expandTree()" class="col-12 btn btn-light">Expand</button>
+                <button onclick="closeTree()" class="col-12 btn btn-light" >Merge</button>      
+            </div>
+        </div>
+    </ul>
+
+
+    <ul id="treeDemo" class="ztree" ></ul>
+
+    <script LANGUAGE="JavaScript">
+
+    
+    var zTreeObj;
+
+    var setting = {
+    	callback: {
+    		onAsyncSuccess: function(event, treeId, treeNode, msg) {
+    			if(treeNode && treeNode.children){
+    				for(var i = 0;i < treeNode.children.length;i++) {
+    					ZTreeObj.expandNode(treeNode.children[i], true, true, true);
+    				}
+    			}
+    		}
+      },
+      data: {
+        simpleData: {  //简单数据模式
+          enable: true
+          // idKey: "id",  
+          // pIdKey: "pId",  
+          // rootPId: 0
+        }
+      },
+      view: {
+        selectedMulti: false,
+        showLine:true,
+        showIcon:false,
+        dblClickExpand: false,
+        txtSelectedEnable: true,
+        fontCss: function(treeId, node) {  
+            return node.font ? node.font : {};  
+          } ,  
+        }, 
+      // isParent = true
+    };
+    // <span style="color: #ff0000;"></span>    
+    var zNodes = [
+    {
+        "id": 5,
+        "name": "Adipose tissue",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Adipose multilineage-differentiating stress-enduring cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 4,
+        "name": "Adipose progenitor cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 6,
+        "name": "Adipose-derived stem cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 7,
+        "name": "Adipose-derived stromal cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 27,
+        "name": "Beige adipogenic precursor cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 39,
+        "name": "Brown adipogenic precursor cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 78,
+        "name": "Dedifferentiation adipocyte",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 89,
+        "name": "Endoderm progenitor cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 94,
+        "name": "Endothelial progenitor cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 117,
+        "name": "Fat cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 137,
+        "name": "Granulocyte",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 200,
+        "name": "Mature endothelial cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 202,
+        "name": "Megakaryocyte progenitor cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 211,
+        "name": "Mesenchymal progenitor cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 212,
+        "name": "Mesenchymal stem cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 213,
+        "name": "Mesenchymal stromal cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 214,
+        "name": "Mesothelial cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 219,
+        "name": "Monocyte",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 226,
+        "name": "Multipotent mesenchymal stroma cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 243,
+        "name": "Natural killer cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 249,
+        "name": "Neuron",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 274,
+        "name": "Pericyte",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 290,
+        "name": "Preadipocyte",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 291,
+        "name": "Preadipocyte progenitor cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 333,
+        "name": "Stem cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 336,
+        "name": "Stromal cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 337,
+        "name": "Stromal vascular fraction cell",
+        "pId": 5,
+        "open": "true"
+    },
+    {
+        "id": 8,
+        "name": "Adrenal gland",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 8,
+        "open": "true"
+    },
+    {
+        "id": 42,
+        "name": "CD8+ T cell",
+        "pId": 8,
+        "open": "true"
+    },
+    {
+        "id": 58,
+        "name": "Chromaffin cell",
+        "pId": 8,
+        "open": "true"
+    },
+    {
+        "id": 59,
+        "name": "Chromaffin cell of adrenal gland",
+        "pId": 8,
+        "open": "true"
+    },
+    {
+        "id": 79,
+        "name": "Definitive zone cell",
+        "pId": 8,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 8,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 8,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 8,
+        "open": "true"
+    },
+    {
+        "id": 194,
+        "name": "MT Gene High",
+        "pId": 8,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 8,
+        "open": "true"
+    },
+    {
+        "id": 233,
+        "name": "Myeloid cell",
+        "pId": 8,
+        "open": "true"
+    },
+    {
+        "id": 243,
+        "name": "Natural killer cell",
+        "pId": 8,
+        "open": "true"
+    },
+    {
+        "id": 249,
+        "name": "Neuron",
+        "pId": 8,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 8,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 8,
+        "open": "true"
+    },
+    {
+        "id": 377,
+        "name": "Zona Fasciculata",
+        "pId": 8,
+        "open": "true"
+    },
+    {
+        "id": 12,
+        "name": "Airway epithelium",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 24,
+        "name": "Basal cell",
+        "pId": 12,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 12,
+        "open": "true"
+    },
+    {
+        "id": 21,
+        "name": "Artery",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 21,
+        "open": "true"
+    },
+    {
+        "id": 24,
+        "name": "Basal cell",
+        "pId": 21,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 21,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 21,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 21,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 21,
+        "open": "true"
+    },
+    {
+        "id": 214,
+        "name": "Mesothelial cell",
+        "pId": 21,
+        "open": "true"
+    },
+    {
+        "id": 238,
+        "name": "Myofibroblast cell",
+        "pId": 21,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 21,
+        "open": "true"
+    },
+    {
+        "id": 341,
+        "name": "T cell",
+        "pId": 21,
+        "open": "true"
+    },
+    {
+        "id": 31,
+        "name": "Bladder",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 31,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 31,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 31,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 31,
+        "open": "true"
+    },
+    {
+        "id": 159,
+        "name": "Interstitial cell",
+        "pId": 31,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 31,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 31,
+        "open": "true"
+    },
+    {
+        "id": 243,
+        "name": "Natural killer cell",
+        "pId": 31,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 31,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 31,
+        "open": "true"
+    },
+    {
+        "id": 369,
+        "name": "Urothelial cell",
+        "pId": 31,
+        "open": "true"
+    },
+    {
+        "id": 33,
+        "name": "Blood",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 0,
+        "name": "Abnormal plasma cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 18,
+        "name": "Angiogenic T cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 26,
+        "name": "Basophil",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 41,
+        "name": "CD4+ T cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 42,
+        "name": "CD8+ T cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 49,
+        "name": "Central memory T cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 61,
+        "name": "Circulating fetal cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 62,
+        "name": "Circulating precursor cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 63,
+        "name": "Circulating progenitor cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 64,
+        "name": "Circulating stem like cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 73,
+        "name": "Cytokine induced killer cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 74,
+        "name": "Cytotoxic T cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 77,
+        "name": "Decidual cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 83,
+        "name": "Early hematopoietic cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 84,
+        "name": "Effector T cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 85,
+        "name": "Effector memory T cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 93,
+        "name": "Endothelial precursor cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 94,
+        "name": "Endothelial progenitor cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 95,
+        "name": "Endothelial stem cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 96,
+        "name": "Enteric neuron",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 99,
+        "name": "Eosinophil",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 106,
+        "name": "Erythroid cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 109,
+        "name": "Erythroid-like and erythroid precursor cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 137,
+        "name": "Granulocyte",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 142,
+        "name": "Hematopoietic progenitor cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 143,
+        "name": "Hematopoietic stem cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 150,
+        "name": "IL-17Ralpha T cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 175,
+        "name": "Large granular lymphocyte",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 177,
+        "name": "Leukocyte",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 200,
+        "name": "Mature endothelial cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 201,
+        "name": "Megakaryocyte",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 206,
+        "name": "Memory T cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 212,
+        "name": "Mesenchymal stem cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 213,
+        "name": "Mesenchymal stromal cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 219,
+        "name": "Monocyte",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 233,
+        "name": "Myeloid cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 234,
+        "name": "Myeloid lineage restricted progenitor cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 235,
+        "name": "Myeloid-derived suppressor cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 241,
+        "name": "Naive T cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 243,
+        "name": "Natural killer cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 283,
+        "name": "Plasma cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 284,
+        "name": "Plasmablast",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 285,
+        "name": "Plasmacytoid dendritic cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 286,
+        "name": "Platelet",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 298,
+        "name": "Progenitor-like angiogenesis-promoting cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 309,
+        "name": "Red blood cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 310,
+        "name": "Regulatory T cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 312,
+        "name": "Responder T cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 313,
+        "name": "Reticulocyte",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 333,
+        "name": "Stem cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 338,
+        "name": "Suppressor T cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 341,
+        "name": "T cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 342,
+        "name": "T helper cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 350,
+        "name": "Thymic emigrant cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 371,
+        "name": "Vascular progenitor cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 373,
+        "name": "Vascular stem cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 376,
+        "name": "White blood cell",
+        "pId": 33,
+        "open": "true"
+    },
+    {
+        "id": 34,
+        "name": "Bone marrow",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 26,
+        "name": "Basophil",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 32,
+        "name": "Blast cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 35,
+        "name": "Bone marrow stem cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 36,
+        "name": "Bone marrow stromal cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 94,
+        "name": "Endothelial progenitor cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 107,
+        "name": "Erythroid precursor",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 108,
+        "name": "Erythroid progenitor cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 139,
+        "name": "Hematopoietic cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 140,
+        "name": "Hematopoietic multipotent progenitor cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 142,
+        "name": "Hematopoietic progenitor cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 143,
+        "name": "Hematopoietic stem cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 174,
+        "name": "Langerhans cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 193,
+        "name": "Lymphoid lineage restricted progenitor cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 196,
+        "name": "Macrophage dendritic cell progenitor",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 199,
+        "name": "Mast cell progenitor",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 202,
+        "name": "Megakaryocyte progenitor cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 203,
+        "name": "Megakaryocyte-erythroid progenitor cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 210,
+        "name": "Mesenchymal cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 211,
+        "name": "Mesenchymal progenitor cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 212,
+        "name": "Mesenchymal stem cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 213,
+        "name": "Mesenchymal stromal cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 219,
+        "name": "Monocyte",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 226,
+        "name": "Multipotent mesenchymal stroma cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 233,
+        "name": "Myeloid cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 241,
+        "name": "Naive T cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 246,
+        "name": "Neural stem cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 257,
+        "name": "Osteoblast",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 283,
+        "name": "Plasma cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 286,
+        "name": "Platelet",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 297,
+        "name": "Progenitor cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 309,
+        "name": "Red blood cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 310,
+        "name": "Regulatory T cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 336,
+        "name": "Stromal cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 341,
+        "name": "T cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 342,
+        "name": "T helper cell",
+        "pId": 34,
+        "open": "true"
+    },
+    {
+        "id": 37,
+        "name": "Brain",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 9,
+        "name": "Adrenergic neuron",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 20,
+        "name": "Anterior pituitary gland cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 22,
+        "name": "Astrocyte",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 28,
+        "name": "Bergmann glia",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 43,
+        "name": "Cajal-Retzius cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 50,
+        "name": "Central nervous system stem cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 54,
+        "name": "Cholinergic neuron",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 57,
+        "name": "Choroid plexus cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 82,
+        "name": "Dopaminergic neuron",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 121,
+        "name": "GABAergic neuron",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 126,
+        "name": "Glial cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 128,
+        "name": "Glutamatergic neuron",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 129,
+        "name": "Glutaminergic neuron",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 130,
+        "name": "Glycinergic neuron",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 158,
+        "name": "Interneuron",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 207,
+        "name": "Meningeal cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 215,
+        "name": "Microglial cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 221,
+        "name": "Motor neuron",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 245,
+        "name": "Neural progenitor cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 246,
+        "name": "Neural stem cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 247,
+        "name": "Neuroblast",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 248,
+        "name": "Neuroendocrine cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 249,
+        "name": "Neuron",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 251,
+        "name": "Noradrenergic neuron",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 253,
+        "name": "Oligodendrocyte",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 254,
+        "name": "Oligodendrocyte precursor cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 255,
+        "name": "Oligodendrocyte progenitor cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 274,
+        "name": "Pericyte",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 278,
+        "name": "Pinealocyte",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 303,
+        "name": "Purkinje cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 305,
+        "name": "Purkinje neuron",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 306,
+        "name": "Pyramidal cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 307,
+        "name": "Radial glia cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 315,
+        "name": "Retinal ganglion cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 320,
+        "name": "Satellite glial cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 321,
+        "name": "Schwann cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 333,
+        "name": "Stem cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 341,
+        "name": "T cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 342,
+        "name": "T helper cell",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 343,
+        "name": "Tanycyte",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 359,
+        "name": "Trigeminal neuron",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 379,
+        "name": "neuron",
+        "pId": 37,
+        "open": "true"
+    },
+    {
+        "id": 38,
+        "name": "Breast",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 25,
+        "name": "Basal progenitor cell",
+        "pId": 38,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 38,
+        "open": "true"
+    },
+    {
+        "id": 143,
+        "name": "Hematopoietic stem cell",
+        "pId": 38,
+        "open": "true"
+    },
+    {
+        "id": 152,
+        "name": "Immune cell",
+        "pId": 38,
+        "open": "true"
+    },
+    {
+        "id": 188,
+        "name": "Luminal progenitor",
+        "pId": 38,
+        "open": "true"
+    },
+    {
+        "id": 189,
+        "name": "Luminal progenitor cell",
+        "pId": 38,
+        "open": "true"
+    },
+    {
+        "id": 212,
+        "name": "Mesenchymal stem cell",
+        "pId": 38,
+        "open": "true"
+    },
+    {
+        "id": 243,
+        "name": "Natural killer cell",
+        "pId": 38,
+        "open": "true"
+    },
+    {
+        "id": 297,
+        "name": "Progenitor cell",
+        "pId": 38,
+        "open": "true"
+    },
+    {
+        "id": 51,
+        "name": "Cerebellum",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 22,
+        "name": "Astrocyte",
+        "pId": 51,
+        "open": "true"
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 51,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 51,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 51,
+        "open": "true"
+    },
+    {
+        "id": 112,
+        "name": "Excitatory neuron",
+        "pId": 51,
+        "open": "true"
+    },
+    {
+        "id": 155,
+        "name": "Inhibitory neuron",
+        "pId": 51,
+        "open": "true"
+    },
+    {
+        "id": 158,
+        "name": "Interneuron",
+        "pId": 51,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 51,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 51,
+        "open": "true"
+    },
+    {
+        "id": 253,
+        "name": "Oligodendrocyte",
+        "pId": 51,
+        "open": "true"
+    },
+    {
+        "id": 275,
+        "name": "Pericyte cell",
+        "pId": 51,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 51,
+        "open": "true"
+    },
+    {
+        "id": 52,
+        "name": "Cervix",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 52,
+        "open": "true"
+    },
+    {
+        "id": 42,
+        "name": "CD8+ T cell",
+        "pId": 52,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 52,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 52,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 52,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 52,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 52,
+        "open": "true"
+    },
+    {
+        "id": 56,
+        "name": "Chorionic villus",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 56,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 56,
+        "open": "true"
+    },
+    {
+        "id": 114,
+        "name": "Extravillous trophoblast",
+        "pId": 56,
+        "open": "true"
+    },
+    {
+        "id": 148,
+        "name": "Hofbauer cell",
+        "pId": 56,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 56,
+        "open": "true"
+    },
+    {
+        "id": 212,
+        "name": "Mesenchymal stem cell",
+        "pId": 56,
+        "open": "true"
+    },
+    {
+        "id": 219,
+        "name": "Monocyte",
+        "pId": 56,
+        "open": "true"
+    },
+    {
+        "id": 220,
+        "name": "Mononuclear cytotrophoblast cell",
+        "pId": 56,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 56,
+        "open": "true"
+    },
+    {
+        "id": 282,
+        "name": "Placental villous trophoblast",
+        "pId": 56,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 56,
+        "open": "true"
+    },
+    {
+        "id": 340,
+        "name": "Syncytiotrophoblast cell",
+        "pId": 56,
+        "open": "true"
+    },
+    {
+        "id": 374,
+        "name": "Villous stromal cell",
+        "pId": 56,
+        "open": "true"
+    },
+    {
+        "id": 68,
+        "name": "Colon",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 68,
+        "open": "true"
+    },
+    {
+        "id": 41,
+        "name": "CD4+ T cell",
+        "pId": 68,
+        "open": "true"
+    },
+    {
+        "id": 69,
+        "name": "Colonic stem cell",
+        "pId": 68,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 68,
+        "open": "true"
+    },
+    {
+        "id": 87,
+        "name": "Endocrine cell",
+        "pId": 68,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 68,
+        "open": "true"
+    },
+    {
+        "id": 97,
+        "name": "Enterocyte",
+        "pId": 68,
+        "open": "true"
+    },
+    {
+        "id": 108,
+        "name": "Erythroid progenitor cell",
+        "pId": 68,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 68,
+        "open": "true"
+    },
+    {
+        "id": 131,
+        "name": "Goblet cell",
+        "pId": 68,
+        "open": "true"
+    },
+    {
+        "id": 160,
+        "name": "Intestinal stem cell",
+        "pId": 68,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 68,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 68,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 68,
+        "open": "true"
+    },
+    {
+        "id": 321,
+        "name": "Schwann cell",
+        "pId": 68,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 68,
+        "open": "true"
+    },
+    {
+        "id": 76,
+        "name": "Decidua",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 360,
+        "name": "Trophoblast cell",
+        "pId": 76,
+        "open": "true"
+    },
+    {
+        "id": 104,
+        "name": "Epityphlon",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 104,
+        "open": "true"
+    },
+    {
+        "id": 42,
+        "name": "CD8+ T cell",
+        "pId": 104,
+        "open": "true"
+    },
+    {
+        "id": 97,
+        "name": "Enterocyte",
+        "pId": 104,
+        "open": "true"
+    },
+    {
+        "id": 131,
+        "name": "Goblet cell",
+        "pId": 104,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 104,
+        "open": "true"
+    },
+    {
+        "id": 233,
+        "name": "Myeloid cell",
+        "pId": 104,
+        "open": "true"
+    },
+    {
+        "id": 111,
+        "name": "Esophagus",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 111,
+        "open": "true"
+    },
+    {
+        "id": 24,
+        "name": "Basal cell",
+        "pId": 111,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 111,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 111,
+        "open": "true"
+    },
+    {
+        "id": 110,
+        "name": "Esophageal mucosal cell",
+        "pId": 111,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 111,
+        "open": "true"
+    },
+    {
+        "id": 131,
+        "name": "Goblet cell",
+        "pId": 111,
+        "open": "true"
+    },
+    {
+        "id": 160,
+        "name": "Intestinal stem cell",
+        "pId": 111,
+        "open": "true"
+    },
+    {
+        "id": 166,
+        "name": "Keratinocyte",
+        "pId": 111,
+        "open": "true"
+    },
+    {
+        "id": 194,
+        "name": "MT Gene High",
+        "pId": 111,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 111,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 111,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 111,
+        "open": "true"
+    },
+    {
+        "id": 323,
+        "name": "Secretory progenitor cell",
+        "pId": 111,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 111,
+        "open": "true"
+    },
+    {
+        "id": 333,
+        "name": "Stem cell",
+        "pId": 111,
+        "open": "true"
+    },
+    {
+        "id": 115,
+        "name": "Eye",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 17,
+        "name": "Amacrine cell",
+        "pId": 115,
+        "open": "true"
+    },
+    {
+        "id": 30,
+        "name": "Bipolar cell",
+        "pId": 115,
+        "open": "true"
+    },
+    {
+        "id": 71,
+        "name": "Corneal endothelial cell",
+        "pId": 115,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 115,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 115,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 115,
+        "open": "true"
+    },
+    {
+        "id": 240,
+        "name": "M\u00fcller cell",
+        "pId": 115,
+        "open": "true"
+    },
+    {
+        "id": 245,
+        "name": "Neural progenitor cell",
+        "pId": 115,
+        "open": "true"
+    },
+    {
+        "id": 277,
+        "name": "Photoreceptor cell",
+        "pId": 115,
+        "open": "true"
+    },
+    {
+        "id": 316,
+        "name": "Retinal progenitor cell",
+        "pId": 115,
+        "open": "true"
+    },
+    {
+        "id": 333,
+        "name": "Stem cell",
+        "pId": 115,
+        "open": "true"
+    },
+    {
+        "id": 341,
+        "name": "T cell",
+        "pId": 115,
+        "open": "true"
+    },
+    {
+        "id": 342,
+        "name": "T helper cell",
+        "pId": 115,
+        "open": "true"
+    },
+    {
+        "id": 116,
+        "name": "Fallopian tube",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 116,
+        "open": "true"
+    },
+    {
+        "id": 42,
+        "name": "CD8+ T cell",
+        "pId": 116,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 116,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 116,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 116,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 116,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 116,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 116,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 116,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 116,
+        "open": "true"
+    },
+    {
+        "id": 122,
+        "name": "Gall bladder",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 122,
+        "open": "true"
+    },
+    {
+        "id": 53,
+        "name": "Cholangiocyte",
+        "pId": 122,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 122,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 122,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 122,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 122,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 122,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 122,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 122,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 122,
+        "open": "true"
+    },
+    {
+        "id": 133,
+        "name": "Gonad",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 133,
+        "open": "true"
+    },
+    {
+        "id": 124,
+        "name": "Germ cell",
+        "pId": 133,
+        "open": "true"
+    },
+    {
+        "id": 134,
+        "name": "Gonadal endothelial cell",
+        "pId": 133,
+        "open": "true"
+    },
+    {
+        "id": 135,
+        "name": "Gonadal mitotic phase fetal germ cell",
+        "pId": 133,
+        "open": "true"
+    },
+    {
+        "id": 136,
+        "name": "Gonocyte",
+        "pId": 133,
+        "open": "true"
+    },
+    {
+        "id": 137,
+        "name": "Granulocyte",
+        "pId": 133,
+        "open": "true"
+    },
+    {
+        "id": 178,
+        "name": "Leydig cell",
+        "pId": 133,
+        "open": "true"
+    },
+    {
+        "id": 179,
+        "name": "Leydig precursor cell",
+        "pId": 133,
+        "open": "true"
+    },
+    {
+        "id": 204,
+        "name": "Meiotic prophase fetal germ cell",
+        "pId": 133,
+        "open": "true"
+    },
+    {
+        "id": 216,
+        "name": "Migration phase fetal germ cell",
+        "pId": 133,
+        "open": "true"
+    },
+    {
+        "id": 217,
+        "name": "Mitotic arrest phase fetal germ cell",
+        "pId": 133,
+        "open": "true"
+    },
+    {
+        "id": 218,
+        "name": "Mitotic fetal germ cell",
+        "pId": 133,
+        "open": "true"
+    },
+    {
+        "id": 256,
+        "name": "Oogenesis phase fetal germ cell",
+        "pId": 133,
+        "open": "true"
+    },
+    {
+        "id": 292,
+        "name": "Premeiotic germ cell",
+        "pId": 133,
+        "open": "true"
+    },
+    {
+        "id": 317,
+        "name": "Retinoid acid signaling-responsive fetal germ cell",
+        "pId": 133,
+        "open": "true"
+    },
+    {
+        "id": 325,
+        "name": "Sertoli cell",
+        "pId": 133,
+        "open": "true"
+    },
+    {
+        "id": 138,
+        "name": "Heart",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 44,
+        "name": "Cardiac muscle cell",
+        "pId": 138,
+        "open": "true"
+    },
+    {
+        "id": 45,
+        "name": "Cardiac progenitor cell",
+        "pId": 138,
+        "open": "true"
+    },
+    {
+        "id": 46,
+        "name": "Cardiac stem and precursor cell",
+        "pId": 138,
+        "open": "true"
+    },
+    {
+        "id": 47,
+        "name": "Cardiovascular progenitor cell",
+        "pId": 138,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 138,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 138,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 138,
+        "open": "true"
+    },
+    {
+        "id": 147,
+        "name": "His bundle cell",
+        "pId": 138,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 138,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 138,
+        "open": "true"
+    },
+    {
+        "id": 227,
+        "name": "Multipotent progenitor cell",
+        "pId": 138,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 138,
+        "open": "true"
+    },
+    {
+        "id": 304,
+        "name": "Purkinje fiber cell",
+        "pId": 138,
+        "open": "true"
+    },
+    {
+        "id": 324,
+        "name": "Semilunar valve cell",
+        "pId": 138,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 138,
+        "open": "true"
+    },
+    {
+        "id": 378,
+        "name": "muscle cell",
+        "pId": 138,
+        "open": "true"
+    },
+    {
+        "id": 161,
+        "name": "Intestine",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 161,
+        "open": "true"
+    },
+    {
+        "id": 97,
+        "name": "Enterocyte",
+        "pId": 161,
+        "open": "true"
+    },
+    {
+        "id": 98,
+        "name": "Enteroendocrine cell",
+        "pId": 161,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 161,
+        "open": "true"
+    },
+    {
+        "id": 131,
+        "name": "Goblet cell",
+        "pId": 161,
+        "open": "true"
+    },
+    {
+        "id": 132,
+        "name": "Goblet progenitor cell",
+        "pId": 161,
+        "open": "true"
+    },
+    {
+        "id": 160,
+        "name": "Intestinal stem cell",
+        "pId": 161,
+        "open": "true"
+    },
+    {
+        "id": 271,
+        "name": "Paneth cell",
+        "pId": 161,
+        "open": "true"
+    },
+    {
+        "id": 323,
+        "name": "Secretory progenitor cell",
+        "pId": 161,
+        "open": "true"
+    },
+    {
+        "id": 168,
+        "name": "Kidney",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 42,
+        "name": "CD8+ T cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 81,
+        "name": "Distal tubule cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 149,
+        "name": "IC Tran PC",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 153,
+        "name": "Infiltrated mononuclear cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 156,
+        "name": "Intercalated cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 165,
+        "name": "Juxtaglomerular cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 170,
+        "name": "Kidney loop of Henle epithelial cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 171,
+        "name": "Kidney progenitor cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 172,
+        "name": "Kidney tubule cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 184,
+        "name": "Loop of Henle cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 201,
+        "name": "Megakaryocyte",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 209,
+        "name": "Mesangial cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 219,
+        "name": "Monocyte",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 230,
+        "name": "Muscle cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 238,
+        "name": "Myofibroblast cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 242,
+        "name": "Natural killer T cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 243,
+        "name": "Natural killer cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 289,
+        "name": "Podocyte",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 293,
+        "name": "Primitive vesicle cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 295,
+        "name": "Principal cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 296,
+        "name": "Principle",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 301,
+        "name": "Proximal tubule cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 311,
+        "name": "Renal intercalated cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 341,
+        "name": "T cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 342,
+        "name": "T helper cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 357,
+        "name": "Transient cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 368,
+        "name": "Ureteric bud cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 369,
+        "name": "Urothelial cell",
+        "pId": 168,
+        "open": "true"
+    },
+    {
+        "id": 176,
+        "name": "Large intestine",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 176,
+        "open": "true"
+    },
+    {
+        "id": 97,
+        "name": "Enterocyte",
+        "pId": 176,
+        "open": "true"
+    },
+    {
+        "id": 98,
+        "name": "Enteroendocrine cell",
+        "pId": 176,
+        "open": "true"
+    },
+    {
+        "id": 131,
+        "name": "Goblet cell",
+        "pId": 176,
+        "open": "true"
+    },
+    {
+        "id": 132,
+        "name": "Goblet progenitor cell",
+        "pId": 176,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 176,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 176,
+        "open": "true"
+    },
+    {
+        "id": 271,
+        "name": "Paneth cell",
+        "pId": 176,
+        "open": "true"
+    },
+    {
+        "id": 321,
+        "name": "Schwann cell",
+        "pId": 176,
+        "open": "true"
+    },
+    {
+        "id": 323,
+        "name": "Secretory progenitor cell",
+        "pId": 176,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 176,
+        "open": "true"
+    },
+    {
+        "id": 180,
+        "name": "Liver",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 29,
+        "name": "Bile duct cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 41,
+        "name": "CD4+ T cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 42,
+        "name": "CD8+ T cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 53,
+        "name": "Cholangiocyte",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 74,
+        "name": "Cytotoxic T cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 93,
+        "name": "Endothelial precursor cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 106,
+        "name": "Erythroid cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 139,
+        "name": "Hematopoietic cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 141,
+        "name": "Hematopoietic precursor cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 144,
+        "name": "Hepatic stellate cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 145,
+        "name": "Hepatoblast",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 146,
+        "name": "Hepatocyte",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 164,
+        "name": "Ito cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 173,
+        "name": "Kupffer cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 181,
+        "name": "Liver bud hepatic cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 182,
+        "name": "Liver progenitor cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 183,
+        "name": "Liver stem cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 192,
+        "name": "Lymphoblast",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 206,
+        "name": "Memory T cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 210,
+        "name": "Mesenchymal cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 212,
+        "name": "Mesenchymal stem cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 213,
+        "name": "Mesenchymal stromal cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 219,
+        "name": "Monocyte",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 233,
+        "name": "Myeloid cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 237,
+        "name": "Myofibroblast",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 242,
+        "name": "Natural killer T cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 243,
+        "name": "Natural killer cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 286,
+        "name": "Platelet",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 297,
+        "name": "Progenitor cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 310,
+        "name": "Regulatory T cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 333,
+        "name": "Stem cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 341,
+        "name": "T cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 342,
+        "name": "T helper cell",
+        "pId": 180,
+        "open": "true"
+    },
+    {
+        "id": 190,
+        "name": "Lung",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 13,
+        "name": "Airway goblet cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 14,
+        "name": "Airway secretory cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 16,
+        "name": "Alveolus",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 19,
+        "name": "Anterior foregut endoderm cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 24,
+        "name": "Basal cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 26,
+        "name": "Basophil",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 40,
+        "name": "Brush cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 42,
+        "name": "CD8+ T cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 55,
+        "name": "Chondrocyte",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 60,
+        "name": "Ciliated cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 65,
+        "name": "Clara cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 66,
+        "name": "Club cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 99,
+        "name": "Eosinophil",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 151,
+        "name": "Idiopathic pulmonary fibrosis cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 162,
+        "name": "Ionocyte",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 163,
+        "name": "Ionocyte cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 197,
+        "name": "Malignant mesothelioma cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 201,
+        "name": "Megakaryocyte",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 214,
+        "name": "Mesothelial cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 219,
+        "name": "Monocyte",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 233,
+        "name": "Myeloid cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 237,
+        "name": "Myofibroblast",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 243,
+        "name": "Natural killer cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 248,
+        "name": "Neuroendocrine cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 322,
+        "name": "Secretory cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 341,
+        "name": "T cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 342,
+        "name": "T helper cell",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 362,
+        "name": "Type I pneumocyte",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 363,
+        "name": "Type II pneumocyte",
+        "pId": 190,
+        "open": "true"
+    },
+    {
+        "id": 228,
+        "name": "Muscle",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 10,
+        "name": "Adult skeletal muscle myoblast",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 11,
+        "name": "Adventitial cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 15,
+        "name": "Airway smooth muscle cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 48,
+        "name": "Cell of skeletal muscle",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 117,
+        "name": "Fat cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 154,
+        "name": "Inflammatory cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 211,
+        "name": "Mesenchymal progenitor cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 212,
+        "name": "Mesenchymal stem cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 213,
+        "name": "Mesenchymal stromal cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 229,
+        "name": "Muscle Progenitor",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 231,
+        "name": "Muscle satellite cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 232,
+        "name": "Muscle-derived cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 236,
+        "name": "Myoblast",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 237,
+        "name": "Myofibroblast",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 239,
+        "name": "Myogenic endothelial cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 243,
+        "name": "Natural killer cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 274,
+        "name": "Pericyte",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 302,
+        "name": "Pulmonary vascular smooth muscle cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 319,
+        "name": "Satellite cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 335,
+        "name": "Striated muscle cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 372,
+        "name": "Vascular smooth muscle cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 378,
+        "name": "muscle cell",
+        "pId": 228,
+        "open": "true"
+    },
+    {
+        "id": 252,
+        "name": "Olfactory system",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 252,
+        "open": "true"
+    },
+    {
+        "id": 260,
+        "name": "Ovary",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 260,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 260,
+        "open": "true"
+    },
+    {
+        "id": 124,
+        "name": "Germ cell",
+        "pId": 260,
+        "open": "true"
+    },
+    {
+        "id": 125,
+        "name": "Germinal stem cell",
+        "pId": 260,
+        "open": "true"
+    },
+    {
+        "id": 152,
+        "name": "Immune cell",
+        "pId": 260,
+        "open": "true"
+    },
+    {
+        "id": 191,
+        "name": "Lymphatic endothelial cell",
+        "pId": 260,
+        "open": "true"
+    },
+    {
+        "id": 210,
+        "name": "Mesenchymal cell",
+        "pId": 260,
+        "open": "true"
+    },
+    {
+        "id": 259,
+        "name": "Ovarian germ stem cell",
+        "pId": 260,
+        "open": "true"
+    },
+    {
+        "id": 294,
+        "name": "Primordial germ cell",
+        "pId": 260,
+        "open": "true"
+    },
+    {
+        "id": 349,
+        "name": "Thecal cell",
+        "pId": 260,
+        "open": "true"
+    },
+    {
+        "id": 263,
+        "name": "Pancreas",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Acinar cell",
+        "pId": 263,
+        "open": "true"
+    },
+    {
+        "id": 87,
+        "name": "Endocrine cell",
+        "pId": 263,
+        "open": "true"
+    },
+    {
+        "id": 88,
+        "name": "Endocrine progenitor cell",
+        "pId": 263,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 263,
+        "open": "true"
+    },
+    {
+        "id": 113,
+        "name": "Exocrine cell",
+        "pId": 263,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 263,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 263,
+        "open": "true"
+    },
+    {
+        "id": 248,
+        "name": "Neuroendocrine cell",
+        "pId": 263,
+        "open": "true"
+    },
+    {
+        "id": 264,
+        "name": "Pancreatic A cell",
+        "pId": 263,
+        "open": "true"
+    },
+    {
+        "id": 265,
+        "name": "Pancreatic D cell",
+        "pId": 263,
+        "open": "true"
+    },
+    {
+        "id": 266,
+        "name": "Pancreatic PP cell",
+        "pId": 263,
+        "open": "true"
+    },
+    {
+        "id": 267,
+        "name": "Pancreatic ductal cell",
+        "pId": 263,
+        "open": "true"
+    },
+    {
+        "id": 268,
+        "name": "Pancreatic ductal stem cell",
+        "pId": 263,
+        "open": "true"
+    },
+    {
+        "id": 269,
+        "name": "Pancreatic progenitor cell",
+        "pId": 263,
+        "open": "true"
+    },
+    {
+        "id": 270,
+        "name": "Pancreatic stem cell",
+        "pId": 263,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 263,
+        "open": "true"
+    },
+    {
+        "id": 361,
+        "name": "Type B pancreatic cell",
+        "pId": 263,
+        "open": "true"
+    },
+    {
+        "id": 280,
+        "name": "Placenta",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 75,
+        "name": "Cytotrophoblast",
+        "pId": 280,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 280,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 280,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 280,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 280,
+        "open": "true"
+    },
+    {
+        "id": 114,
+        "name": "Extravillous trophoblast",
+        "pId": 280,
+        "open": "true"
+    },
+    {
+        "id": 148,
+        "name": "Hofbauer cell",
+        "pId": 280,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 280,
+        "open": "true"
+    },
+    {
+        "id": 212,
+        "name": "Mesenchymal stem cell",
+        "pId": 280,
+        "open": "true"
+    },
+    {
+        "id": 213,
+        "name": "Mesenchymal stromal cell",
+        "pId": 280,
+        "open": "true"
+    },
+    {
+        "id": 220,
+        "name": "Mononuclear cytotrophoblast cell",
+        "pId": 280,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 280,
+        "open": "true"
+    },
+    {
+        "id": 281,
+        "name": "Placenta cell",
+        "pId": 280,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 280,
+        "open": "true"
+    },
+    {
+        "id": 340,
+        "name": "Syncytiotrophoblast cell",
+        "pId": 280,
+        "open": "true"
+    },
+    {
+        "id": 360,
+        "name": "Trophoblast cell",
+        "pId": 280,
+        "open": "true"
+    },
+    {
+        "id": 287,
+        "name": "Pleura",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 287,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 287,
+        "open": "true"
+    },
+    {
+        "id": 197,
+        "name": "Malignant mesothelioma cell",
+        "pId": 287,
+        "open": "true"
+    },
+    {
+        "id": 214,
+        "name": "Mesothelial cell",
+        "pId": 287,
+        "open": "true"
+    },
+    {
+        "id": 243,
+        "name": "Natural killer cell",
+        "pId": 287,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 287,
+        "open": "true"
+    },
+    {
+        "id": 299,
+        "name": "Prostate",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 24,
+        "name": "Basal cell",
+        "pId": 299,
+        "open": "true"
+    },
+    {
+        "id": 70,
+        "name": "Colony-forming cell",
+        "pId": 299,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 299,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 299,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 299,
+        "open": "true"
+    },
+    {
+        "id": 186,
+        "name": "Luminal cell",
+        "pId": 299,
+        "open": "true"
+    },
+    {
+        "id": 187,
+        "name": "Luminal cell of prostate epithelium",
+        "pId": 299,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 299,
+        "open": "true"
+    },
+    {
+        "id": 248,
+        "name": "Neuroendocrine cell",
+        "pId": 299,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 299,
+        "open": "true"
+    },
+    {
+        "id": 300,
+        "name": "Prostate stem cell",
+        "pId": 299,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 299,
+        "open": "true"
+    },
+    {
+        "id": 314,
+        "name": "Retina",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 30,
+        "name": "Bipolar cell",
+        "pId": 314,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 314,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 314,
+        "open": "true"
+    },
+    {
+        "id": 225,
+        "name": "Muller glia precursor cell",
+        "pId": 314,
+        "open": "true"
+    },
+    {
+        "id": 240,
+        "name": "M\u00fcller cell",
+        "pId": 314,
+        "open": "true"
+    },
+    {
+        "id": 277,
+        "name": "Photoreceptor cell",
+        "pId": 314,
+        "open": "true"
+    },
+    {
+        "id": 316,
+        "name": "Retinal progenitor cell",
+        "pId": 314,
+        "open": "true"
+    },
+    {
+        "id": 326,
+        "name": "Skin",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 326,
+        "open": "true"
+    },
+    {
+        "id": 101,
+        "name": "Epidermal stem cell",
+        "pId": 326,
+        "open": "true"
+    },
+    {
+        "id": 102,
+        "name": "Epidermal transit amplifying cell",
+        "pId": 326,
+        "open": "true"
+    },
+    {
+        "id": 166,
+        "name": "Keratinocyte",
+        "pId": 326,
+        "open": "true"
+    },
+    {
+        "id": 167,
+        "name": "Keratinocyte progenitor cell",
+        "pId": 326,
+        "open": "true"
+    },
+    {
+        "id": 174,
+        "name": "Langerhans cell",
+        "pId": 326,
+        "open": "true"
+    },
+    {
+        "id": 205,
+        "name": "Melanocyte",
+        "pId": 326,
+        "open": "true"
+    },
+    {
+        "id": 208,
+        "name": "Merkel cell",
+        "pId": 326,
+        "open": "true"
+    },
+    {
+        "id": 212,
+        "name": "Mesenchymal stem cell",
+        "pId": 326,
+        "open": "true"
+    },
+    {
+        "id": 288,
+        "name": "Pluripotent stem cell",
+        "pId": 326,
+        "open": "true"
+    },
+    {
+        "id": 310,
+        "name": "Regulatory T cell",
+        "pId": 326,
+        "open": "true"
+    },
+    {
+        "id": 358,
+        "name": "Trichocyte",
+        "pId": 326,
+        "open": "true"
+    },
+    {
+        "id": 327,
+        "name": "Small intestine",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 1,
+        "name": "Absorptive cell",
+        "pId": 327,
+        "open": "true"
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 327,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 327,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 327,
+        "open": "true"
+    },
+    {
+        "id": 97,
+        "name": "Enterocyte",
+        "pId": 327,
+        "open": "true"
+    },
+    {
+        "id": 98,
+        "name": "Enteroendocrine cell",
+        "pId": 327,
+        "open": "true"
+    },
+    {
+        "id": 108,
+        "name": "Erythroid progenitor cell",
+        "pId": 327,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 327,
+        "open": "true"
+    },
+    {
+        "id": 131,
+        "name": "Goblet cell",
+        "pId": 327,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 327,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 327,
+        "open": "true"
+    },
+    {
+        "id": 223,
+        "name": "Mucous neck cell",
+        "pId": 327,
+        "open": "true"
+    },
+    {
+        "id": 249,
+        "name": "Neuron",
+        "pId": 327,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 327,
+        "open": "true"
+    },
+    {
+        "id": 271,
+        "name": "Paneth cell",
+        "pId": 327,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 327,
+        "open": "true"
+    },
+    {
+        "id": 332,
+        "name": "Spleen",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 332,
+        "open": "true"
+    },
+    {
+        "id": 42,
+        "name": "CD8+ T cell",
+        "pId": 332,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 332,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 332,
+        "open": "true"
+    },
+    {
+        "id": 193,
+        "name": "Lymphoid lineage restricted progenitor cell",
+        "pId": 332,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 332,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 332,
+        "open": "true"
+    },
+    {
+        "id": 334,
+        "name": "Stomach",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 334,
+        "open": "true"
+    },
+    {
+        "id": 42,
+        "name": "CD8+ T cell",
+        "pId": 334,
+        "open": "true"
+    },
+    {
+        "id": 58,
+        "name": "Chromaffin cell",
+        "pId": 334,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 334,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 334,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 334,
+        "open": "true"
+    },
+    {
+        "id": 137,
+        "name": "Granulocyte",
+        "pId": 334,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 334,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 334,
+        "open": "true"
+    },
+    {
+        "id": 222,
+        "name": "Mucous cell of stomach",
+        "pId": 334,
+        "open": "true"
+    },
+    {
+        "id": 233,
+        "name": "Myeloid cell",
+        "pId": 334,
+        "open": "true"
+    },
+    {
+        "id": 261,
+        "name": "Oxyntic progenitor cell",
+        "pId": 334,
+        "open": "true"
+    },
+    {
+        "id": 262,
+        "name": "Oxyntic stem cell",
+        "pId": 334,
+        "open": "true"
+    },
+    {
+        "id": 272,
+        "name": "Parietal cell",
+        "pId": 334,
+        "open": "true"
+    },
+    {
+        "id": 273,
+        "name": "Peptic cell",
+        "pId": 334,
+        "open": "true"
+    },
+    {
+        "id": 279,
+        "name": "Pit",
+        "pId": 334,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 334,
+        "open": "true"
+    },
+    {
+        "id": 344,
+        "name": "Temporal lobe",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 22,
+        "name": "Astrocyte",
+        "pId": 344,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 344,
+        "open": "true"
+    },
+    {
+        "id": 126,
+        "name": "Glial cell",
+        "pId": 344,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 344,
+        "open": "true"
+    },
+    {
+        "id": 215,
+        "name": "Microglial cell",
+        "pId": 344,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 344,
+        "open": "true"
+    },
+    {
+        "id": 253,
+        "name": "Oligodendrocyte",
+        "pId": 344,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 344,
+        "open": "true"
+    },
+    {
+        "id": 346,
+        "name": "Testis",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 136,
+        "name": "Gonocyte",
+        "pId": 346,
+        "open": "true"
+    },
+    {
+        "id": 178,
+        "name": "Leydig cell",
+        "pId": 346,
+        "open": "true"
+    },
+    {
+        "id": 276,
+        "name": "Peritubular myoid cell",
+        "pId": 346,
+        "open": "true"
+    },
+    {
+        "id": 292,
+        "name": "Premeiotic germ cell",
+        "pId": 346,
+        "open": "true"
+    },
+    {
+        "id": 294,
+        "name": "Primordial germ cell",
+        "pId": 346,
+        "open": "true"
+    },
+    {
+        "id": 325,
+        "name": "Sertoli cell",
+        "pId": 346,
+        "open": "true"
+    },
+    {
+        "id": 330,
+        "name": "Spermatogonial stem cell",
+        "pId": 346,
+        "open": "true"
+    },
+    {
+        "id": 331,
+        "name": "Spermatogonium",
+        "pId": 346,
+        "open": "true"
+    },
+    {
+        "id": 347,
+        "name": "Testis somatic cell",
+        "pId": 346,
+        "open": "true"
+    },
+    {
+        "id": 352,
+        "name": "Thymus",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 352,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 352,
+        "open": "true"
+    },
+    {
+        "id": 351,
+        "name": "Thymocyte",
+        "pId": 352,
+        "open": "true"
+    },
+    {
+        "id": 353,
+        "name": "Thyroid",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 353,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 353,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 353,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 353,
+        "open": "true"
+    },
+    {
+        "id": 119,
+        "name": "Follicular cell",
+        "pId": 353,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 353,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 353,
+        "open": "true"
+    },
+    {
+        "id": 285,
+        "name": "Plasmacytoid dendritic cell",
+        "pId": 353,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 353,
+        "open": "true"
+    },
+    {
+        "id": 341,
+        "name": "T cell",
+        "pId": 353,
+        "open": "true"
+    },
+    {
+        "id": 354,
+        "name": "Thyroid follicular cell",
+        "pId": 353,
+        "open": "true"
+    },
+    {
+        "id": 355,
+        "name": "Tonsil",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 355,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 355,
+        "open": "true"
+    },
+    {
+        "id": 213,
+        "name": "Mesenchymal stromal cell",
+        "pId": 355,
+        "open": "true"
+    },
+    {
+        "id": 233,
+        "name": "Myeloid cell",
+        "pId": 355,
+        "open": "true"
+    },
+    {
+        "id": 341,
+        "name": "T cell",
+        "pId": 355,
+        "open": "true"
+    },
+    {
+        "id": 342,
+        "name": "T helper cell",
+        "pId": 355,
+        "open": "true"
+    },
+    {
+        "id": 356,
+        "name": "Trachea",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 356,
+        "open": "true"
+    },
+    {
+        "id": 24,
+        "name": "Basal cell",
+        "pId": 356,
+        "open": "true"
+    },
+    {
+        "id": 55,
+        "name": "Chondrocyte",
+        "pId": 356,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 356,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 356,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 356,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 356,
+        "open": "true"
+    },
+    {
+        "id": 131,
+        "name": "Goblet cell",
+        "pId": 356,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 356,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 356,
+        "open": "true"
+    },
+    {
+        "id": 364,
+        "name": "Umbilical cord",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 364,
+        "open": "true"
+    },
+    {
+        "id": 94,
+        "name": "Endothelial progenitor cell",
+        "pId": 364,
+        "open": "true"
+    },
+    {
+        "id": 106,
+        "name": "Erythroid cell",
+        "pId": 364,
+        "open": "true"
+    },
+    {
+        "id": 142,
+        "name": "Hematopoietic progenitor cell",
+        "pId": 364,
+        "open": "true"
+    },
+    {
+        "id": 143,
+        "name": "Hematopoietic stem cell",
+        "pId": 364,
+        "open": "true"
+    },
+    {
+        "id": 201,
+        "name": "Megakaryocyte",
+        "pId": 364,
+        "open": "true"
+    },
+    {
+        "id": 212,
+        "name": "Mesenchymal stem cell",
+        "pId": 364,
+        "open": "true"
+    },
+    {
+        "id": 219,
+        "name": "Monocyte",
+        "pId": 364,
+        "open": "true"
+    },
+    {
+        "id": 342,
+        "name": "T helper cell",
+        "pId": 364,
+        "open": "true"
+    },
+    {
+        "id": 365,
+        "name": "Umbilical cord blood",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 365,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 365,
+        "open": "true"
+    },
+    {
+        "id": 94,
+        "name": "Endothelial progenitor cell",
+        "pId": 365,
+        "open": "true"
+    },
+    {
+        "id": 99,
+        "name": "Eosinophil",
+        "pId": 365,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 365,
+        "open": "true"
+    },
+    {
+        "id": 106,
+        "name": "Erythroid cell",
+        "pId": 365,
+        "open": "true"
+    },
+    {
+        "id": 108,
+        "name": "Erythroid progenitor cell",
+        "pId": 365,
+        "open": "true"
+    },
+    {
+        "id": 140,
+        "name": "Hematopoietic multipotent progenitor cell",
+        "pId": 365,
+        "open": "true"
+    },
+    {
+        "id": 142,
+        "name": "Hematopoietic progenitor cell",
+        "pId": 365,
+        "open": "true"
+    },
+    {
+        "id": 143,
+        "name": "Hematopoietic stem cell",
+        "pId": 365,
+        "open": "true"
+    },
+    {
+        "id": 201,
+        "name": "Megakaryocyte",
+        "pId": 365,
+        "open": "true"
+    },
+    {
+        "id": 212,
+        "name": "Mesenchymal stem cell",
+        "pId": 365,
+        "open": "true"
+    },
+    {
+        "id": 219,
+        "name": "Monocyte",
+        "pId": 365,
+        "open": "true"
+    },
+    {
+        "id": 243,
+        "name": "Natural killer cell",
+        "pId": 365,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 365,
+        "open": "true"
+    },
+    {
+        "id": 285,
+        "name": "Plasmacytoid dendritic cell",
+        "pId": 365,
+        "open": "true"
+    },
+    {
+        "id": 342,
+        "name": "T helper cell",
+        "pId": 365,
+        "open": "true"
+    },
+    {
+        "id": 366,
+        "name": "Ureter",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 366,
+        "open": "true"
+    },
+    {
+        "id": 24,
+        "name": "Basal cell",
+        "pId": 366,
+        "open": "true"
+    },
+    {
+        "id": 157,
+        "name": "Intermediate monocyte",
+        "pId": 366,
+        "open": "true"
+    },
+    {
+        "id": 219,
+        "name": "Monocyte",
+        "pId": 366,
+        "open": "true"
+    },
+    {
+        "id": 243,
+        "name": "Natural killer cell",
+        "pId": 366,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 366,
+        "open": "true"
+    },
+    {
+        "id": 369,
+        "name": "Urothelial cell",
+        "pId": 366,
+        "open": "true"
+    },
+    {
+        "id": 370,
+        "name": "Uterus",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 90,
+        "name": "Endometrial stem cell",
+        "pId": 370,
+        "open": "true"
+    },
+    {
+        "id": 91,
+        "name": "Endometrium",
+        "pId": 370,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 370,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 370,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 370,
+        "open": "true"
+    },
+    {
+        "id": 185,
+        "name": "Luminal",
+        "pId": 370,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 370,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 370,
+        "open": "true"
+    },
+    {
+        "id": 243,
+        "name": "Natural killer cell",
+        "pId": 370,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 370,
+        "open": "true"
+    },
+    {
+        "id": 375,
+        "name": "Visceral adipose tissue",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 6,
+        "name": "Adipose-derived stem cell",
+        "pId": 375,
+        "open": "true"
+    },
+    {
+        "id": 7,
+        "name": "Adipose-derived stromal cell",
+        "pId": 375,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 375,
+        "open": "true"
+    },
+    {
+        "id": 380,
+        "name": "Fetal adrenal gland",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 58,
+        "name": "Chromaffin cell",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 59,
+        "name": "Chromaffin cell of adrenal gland",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 72,
+        "name": "Cortical cell of adrenal gland",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 123,
+        "name": "Ganglion interneuron",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 146,
+        "name": "Hepatocyte",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 202,
+        "name": "Megakaryocyte progenitor cell",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 248,
+        "name": "Neuroendocrine cell",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 249,
+        "name": "Neuron",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 367,
+        "name": "Ureteric bud",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 377,
+        "name": "Zona Fasciculata",
+        "pId": 380,
+        "open": "true"
+    },
+    {
+        "id": 381,
+        "name": "Fetal brain",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 22,
+        "name": "Astrocyte",
+        "pId": 381,
+        "open": "true"
+    },
+    {
+        "id": 50,
+        "name": "Central nervous system stem cell",
+        "pId": 381,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 381,
+        "open": "true"
+    },
+    {
+        "id": 100,
+        "name": "Ependymal cell",
+        "pId": 381,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 381,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 381,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 381,
+        "open": "true"
+    },
+    {
+        "id": 215,
+        "name": "Microglial cell",
+        "pId": 381,
+        "open": "true"
+    },
+    {
+        "id": 249,
+        "name": "Neuron",
+        "pId": 381,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 381,
+        "open": "true"
+    },
+    {
+        "id": 253,
+        "name": "Oligodendrocyte",
+        "pId": 381,
+        "open": "true"
+    },
+    {
+        "id": 303,
+        "name": "Purkinje cell",
+        "pId": 381,
+        "open": "true"
+    },
+    {
+        "id": 308,
+        "name": "Radial glial cell",
+        "pId": 381,
+        "open": "true"
+    },
+    {
+        "id": 382,
+        "name": "Fetal calvaria",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 55,
+        "name": "Chondrocyte",
+        "pId": 382,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 382,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 382,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 382,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 382,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 382,
+        "open": "true"
+    },
+    {
+        "id": 258,
+        "name": "Osteoclast",
+        "pId": 382,
+        "open": "true"
+    },
+    {
+        "id": 383,
+        "name": "Fetal eye",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 383,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 383,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 383,
+        "open": "true"
+    },
+    {
+        "id": 123,
+        "name": "Ganglion interneuron",
+        "pId": 383,
+        "open": "true"
+    },
+    {
+        "id": 224,
+        "name": "Muller cell",
+        "pId": 383,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 383,
+        "open": "true"
+    },
+    {
+        "id": 316,
+        "name": "Retinal progenitor cell",
+        "pId": 383,
+        "open": "true"
+    },
+    {
+        "id": 384,
+        "name": "Fetal gonad",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 124,
+        "name": "Germ cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 134,
+        "name": "Gonadal endothelial cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 135,
+        "name": "Gonadal mitotic phase fetal germ cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 137,
+        "name": "Granulocyte",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 178,
+        "name": "Leydig cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 179,
+        "name": "Leydig precursor cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 204,
+        "name": "Meiotic prophase fetal germ cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 210,
+        "name": "Mesenchymal cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 216,
+        "name": "Migration phase fetal germ cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 217,
+        "name": "Mitotic arrest phase fetal germ cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 218,
+        "name": "Mitotic fetal germ cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 256,
+        "name": "Oogenesis phase fetal germ cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 317,
+        "name": "Retinoid acid signaling-responsive fetal germ cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 325,
+        "name": "Sertoli cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 329,
+        "name": "Spermatocyte",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 348,
+        "name": "Theca cell",
+        "pId": 384,
+        "open": "true"
+    },
+    {
+        "id": 385,
+        "name": "Fetal heart",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 44,
+        "name": "Cardiac muscle cell",
+        "pId": 385,
+        "open": "true"
+    },
+    {
+        "id": 86,
+        "name": "Endocardial cell",
+        "pId": 385,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 385,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 385,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 385,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 385,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 385,
+        "open": "true"
+    },
+    {
+        "id": 201,
+        "name": "Megakaryocyte",
+        "pId": 385,
+        "open": "true"
+    },
+    {
+        "id": 249,
+        "name": "Neuron",
+        "pId": 385,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 385,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 385,
+        "open": "true"
+    },
+    {
+        "id": 386,
+        "name": "Fetal intestine",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 386,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 386,
+        "open": "true"
+    },
+    {
+        "id": 97,
+        "name": "Enterocyte",
+        "pId": 386,
+        "open": "true"
+    },
+    {
+        "id": 98,
+        "name": "Enteroendocrine cell",
+        "pId": 386,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 386,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 386,
+        "open": "true"
+    },
+    {
+        "id": 108,
+        "name": "Erythroid progenitor cell",
+        "pId": 386,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 386,
+        "open": "true"
+    },
+    {
+        "id": 131,
+        "name": "Goblet cell",
+        "pId": 386,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 386,
+        "open": "true"
+    },
+    {
+        "id": 238,
+        "name": "Myofibroblast cell",
+        "pId": 386,
+        "open": "true"
+    },
+    {
+        "id": 249,
+        "name": "Neuron",
+        "pId": 386,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 386,
+        "open": "true"
+    },
+    {
+        "id": 271,
+        "name": "Paneth cell",
+        "pId": 386,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 386,
+        "open": "true"
+    },
+    {
+        "id": 387,
+        "name": "Fetal kidney",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 67,
+        "name": "Collecting duct of renal tubule",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 127,
+        "name": "Glomerular visceral epithelial cell",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 169,
+        "name": "Kidney interstitial cell",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 170,
+        "name": "Kidney loop of Henle epithelial cell",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 172,
+        "name": "Kidney tubule cell",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 178,
+        "name": "Leydig cell",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 201,
+        "name": "Megakaryocyte",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 202,
+        "name": "Megakaryocyte progenitor cell",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 209,
+        "name": "Mesangial cell",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 210,
+        "name": "Mesenchymal cell",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 219,
+        "name": "Monocyte",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 242,
+        "name": "Natural killer T cell",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 249,
+        "name": "Neuron",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 293,
+        "name": "Primitive vesicle cell",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 311,
+        "name": "Renal intercalated cell",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 318,
+        "name": "S-shaped body",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 368,
+        "name": "Ureteric bud cell",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 377,
+        "name": "Zona Fasciculata",
+        "pId": 387,
+        "open": "true"
+    },
+    {
+        "id": 388,
+        "name": "Fetal liver",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 93,
+        "name": "Endothelial precursor cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 106,
+        "name": "Erythroid cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 108,
+        "name": "Erythroid progenitor cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 139,
+        "name": "Hematopoietic cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 140,
+        "name": "Hematopoietic multipotent progenitor cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 141,
+        "name": "Hematopoietic precursor cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 146,
+        "name": "Hepatocyte",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 173,
+        "name": "Kupffer cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 182,
+        "name": "Liver progenitor cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 183,
+        "name": "Liver stem cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 192,
+        "name": "Lymphoblast",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 199,
+        "name": "Mast cell progenitor",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 202,
+        "name": "Megakaryocyte progenitor cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 210,
+        "name": "Mesenchymal cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 212,
+        "name": "Mesenchymal stem cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 219,
+        "name": "Monocyte",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 297,
+        "name": "Progenitor cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 333,
+        "name": "Stem cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 341,
+        "name": "T cell",
+        "pId": 388,
+        "open": "true"
+    },
+    {
+        "id": 389,
+        "name": "Fetal lung",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 24,
+        "name": "Basal cell",
+        "pId": 389,
+        "open": "true"
+    },
+    {
+        "id": 42,
+        "name": "CD8+ T cell",
+        "pId": 389,
+        "open": "true"
+    },
+    {
+        "id": 55,
+        "name": "Chondrocyte",
+        "pId": 389,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 389,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 389,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 389,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 389,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 389,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 389,
+        "open": "true"
+    },
+    {
+        "id": 202,
+        "name": "Megakaryocyte progenitor cell",
+        "pId": 389,
+        "open": "true"
+    },
+    {
+        "id": 210,
+        "name": "Mesenchymal cell",
+        "pId": 389,
+        "open": "true"
+    },
+    {
+        "id": 238,
+        "name": "Myofibroblast cell",
+        "pId": 389,
+        "open": "true"
+    },
+    {
+        "id": 243,
+        "name": "Natural killer cell",
+        "pId": 389,
+        "open": "true"
+    },
+    {
+        "id": 249,
+        "name": "Neuron",
+        "pId": 389,
+        "open": "true"
+    },
+    {
+        "id": 275,
+        "name": "Pericyte cell",
+        "pId": 389,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 389,
+        "open": "true"
+    },
+    {
+        "id": 390,
+        "name": "Fetal muscle",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 48,
+        "name": "Cell of skeletal muscle",
+        "pId": 390,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 390,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 390,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 390,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 390,
+        "open": "true"
+    },
+    {
+        "id": 233,
+        "name": "Myeloid cell",
+        "pId": 390,
+        "open": "true"
+    },
+    {
+        "id": 244,
+        "name": "Nervous system",
+        "pId": 390,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 390,
+        "open": "true"
+    },
+    {
+        "id": 345,
+        "name": "Tendon cell",
+        "pId": 390,
+        "open": "true"
+    },
+    {
+        "id": 391,
+        "name": "Fetal pancreas",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Acinar cell",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 42,
+        "name": "CD8+ T cell",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 87,
+        "name": "Endocrine cell",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 140,
+        "name": "Hematopoietic multipotent progenitor cell",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 146,
+        "name": "Hepatocyte",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 243,
+        "name": "Natural killer cell",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 248,
+        "name": "Neuroendocrine cell",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 249,
+        "name": "Neuron",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 267,
+        "name": "Pancreatic ductal cell",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 310,
+        "name": "Regulatory T cell",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 391,
+        "open": "true"
+    },
+    {
+        "id": 392,
+        "name": "Fetal rib",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 55,
+        "name": "Chondrocyte",
+        "pId": 392,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 392,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 392,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 392,
+        "open": "true"
+    },
+    {
+        "id": 257,
+        "name": "Osteoblast",
+        "pId": 392,
+        "open": "true"
+    },
+    {
+        "id": 258,
+        "name": "Osteoclast",
+        "pId": 392,
+        "open": "true"
+    },
+    {
+        "id": 393,
+        "name": "Fetal skin",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 393,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 393,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 393,
+        "open": "true"
+    },
+    {
+        "id": 166,
+        "name": "Keratinocyte",
+        "pId": 393,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 393,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 393,
+        "open": "true"
+    },
+    {
+        "id": 205,
+        "name": "Melanocyte",
+        "pId": 393,
+        "open": "true"
+    },
+    {
+        "id": 210,
+        "name": "Mesenchymal cell",
+        "pId": 393,
+        "open": "true"
+    },
+    {
+        "id": 229,
+        "name": "Muscle Progenitor",
+        "pId": 393,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 393,
+        "open": "true"
+    },
+    {
+        "id": 257,
+        "name": "Osteoblast",
+        "pId": 393,
+        "open": "true"
+    },
+    {
+        "id": 394,
+        "name": "Fetal spinal cord",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "B cell",
+        "pId": 394,
+        "open": "true"
+    },
+    {
+        "id": 55,
+        "name": "Chondrocyte",
+        "pId": 394,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 394,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 394,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 394,
+        "open": "true"
+    },
+    {
+        "id": 108,
+        "name": "Erythroid progenitor cell",
+        "pId": 394,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 394,
+        "open": "true"
+    },
+    {
+        "id": 146,
+        "name": "Hepatocyte",
+        "pId": 394,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 394,
+        "open": "true"
+    },
+    {
+        "id": 221,
+        "name": "Motor neuron",
+        "pId": 394,
+        "open": "true"
+    },
+    {
+        "id": 243,
+        "name": "Natural killer cell",
+        "pId": 394,
+        "open": "true"
+    },
+    {
+        "id": 248,
+        "name": "Neuroendocrine cell",
+        "pId": 394,
+        "open": "true"
+    },
+    {
+        "id": 249,
+        "name": "Neuron",
+        "pId": 394,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 394,
+        "open": "true"
+    },
+    {
+        "id": 253,
+        "name": "Oligodendrocyte",
+        "pId": 394,
+        "open": "true"
+    },
+    {
+        "id": 258,
+        "name": "Osteoclast",
+        "pId": 394,
+        "open": "true"
+    },
+    {
+        "id": 339,
+        "name": "Sympathetic neuron",
+        "pId": 394,
+        "open": "true"
+    },
+    {
+        "id": 395,
+        "name": "Fetal stomach",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 395,
+        "open": "true"
+    },
+    {
+        "id": 92,
+        "name": "Endothelial cell",
+        "pId": 395,
+        "open": "true"
+    },
+    {
+        "id": 97,
+        "name": "Enterocyte",
+        "pId": 395,
+        "open": "true"
+    },
+    {
+        "id": 103,
+        "name": "Epithelial cell",
+        "pId": 395,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 395,
+        "open": "true"
+    },
+    {
+        "id": 118,
+        "name": "Fibroblast",
+        "pId": 395,
+        "open": "true"
+    },
+    {
+        "id": 120,
+        "name": "Fundus of stomach",
+        "pId": 395,
+        "open": "true"
+    },
+    {
+        "id": 193,
+        "name": "Lymphoid lineage restricted progenitor cell",
+        "pId": 395,
+        "open": "true"
+    },
+    {
+        "id": 195,
+        "name": "Macrophage",
+        "pId": 395,
+        "open": "true"
+    },
+    {
+        "id": 244,
+        "name": "Nervous system",
+        "pId": 395,
+        "open": "true"
+    },
+    {
+        "id": 249,
+        "name": "Neuron",
+        "pId": 395,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 395,
+        "open": "true"
+    },
+    {
+        "id": 279,
+        "name": "Pit",
+        "pId": 395,
+        "open": "true"
+    },
+    {
+        "id": 328,
+        "name": "Smooth muscle cell",
+        "pId": 395,
+        "open": "true"
+    },
+    {
+        "id": 396,
+        "name": "Fetal thymus",
+        "open": "true",
+        "isParent": "true",
+        "font": {
+            "font-weight": "bold"
+        }
+    },
+    {
+        "id": 42,
+        "name": "CD8+ T cell",
+        "pId": 396,
+        "open": "true"
+    },
+    {
+        "id": 80,
+        "name": "Dendritic cell",
+        "pId": 396,
+        "open": "true"
+    },
+    {
+        "id": 105,
+        "name": "Erythrocyte",
+        "pId": 396,
+        "open": "true"
+    },
+    {
+        "id": 198,
+        "name": "Mast cell",
+        "pId": 396,
+        "open": "true"
+    },
+    {
+        "id": 250,
+        "name": "Neutrophil",
+        "pId": 396,
+        "open": "true"
+    }
+]
+    // $(document).ready(function(){
+    //   zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+    //   });
+    
+    // ZTreeObj.expandAll(true);
+
+
+    // let treeObj = $.fn.zTree.init($("#tree"), setting, departments);
+    
+    // treeObj.expandAll(true);    //默认展开
+    // var nodes = treeObj.getNodes();  
+    
+    // if (nodes.length > 0) {
+    //   var node = treeObj.selectNode(nodes[0]);//默认选中根节点
+    // }
+
+    var tree  = $.fn.zTree.init($('#treeDemo'), setting, zNodes);
+    tree.expandAll(tree);//默认是展开的
+
+
+    function expandTree() {
+        var tree = $.fn.zTree.getZTreeObj('treeDemo');
+        tree.expandAll(tree);
+    }
+
+    function closeTree() {
+        var tree = $.fn.zTree.getZTreeObj('treeDemo');
+        //获取 zTree 的全部节点数据将节点数据转换为简单 Array 格式
+        var zNodes = tree.transformToArray(tree.getNodes());
+        for(var i=0;i<zNodes.length;i++){
+            if(zNodes[i].level == 0){
+                console.log(zNodes[i].name);
+                //根节点展开
+                tree.expandNode(zNodes[i],false,true,false)
+            }else{
+                tree.expandNode(zNodes[i],false,true,false)
+            }
+        }
+    }
+
+
+  
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE >
+
+<html lang="en" >
+  <head>
+    <TITLE> Tissue Tree </TITLE>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="css/demo.css" type="text/css">
+    <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- <script type="text/javascript" src="/ztree_v3/api/apiCss/jquery-1.6.2.min.js"></script> -->
+    <script type="text/javascript" src="api/apiCss/jquery-1.6.2.min.js" ></script>
+    <script type="text/javascript" src="api/apiCss/jquery.ztree.core.js"></script>
+  </head>
+  <body>
+      <!-- Page Wrapper -->
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div class="sidebar-brand-icon rotate-n-15">
+              <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Tissue Tree</div>
+        </a>
+        <div class="center">
+            <div class="btn-group ">
+                <button onclick="expandTree()" class="col-12 btn btn-light">Expand</button>
+                <button onclick="closeTree()" class="col-12 btn btn-light" >Merge</button>      
+            </div>
+        </div>
+    </ul>
+
+
+    <ul id="treeDemo" class="ztree" ></ul>
+
+    <script LANGUAGE="JavaScript">
+
+    
+    var zTreeObj;
+
+    var setting = {
+    	callback: {
+    		onAsyncSuccess: function(event, treeId, treeNode, msg) {
+    			if(treeNode && treeNode.children){
+    				for(var i = 0;i < treeNode.children.length;i++) {
+    					ZTreeObj.expandNode(treeNode.children[i], true, true, true);
+    				}
+    			}
+    		},
+            onClick:function(event,treeId,treeNode){
+                if(treeNode.ahref){
+                    window.open(treeNode.ahref);
+                }else{
+                    alert("No pictures!")
+                    }
+                }
+                },
+      data: {
+        simpleData: {  //简单数据模式
+          enable: true
+          // idKey: "id",  
+          // pIdKey: "pId",  
+          // rootPId: 0
+        }
+      },
+      view: {
+        selectedMulti: false,
+        showLine:true,
+        showIcon:false,
+        dblClickExpand: false,
+        txtSelectedEnable: true,
+        fontCss: function(treeId, node) {  
+            return node.font ? node.font : {};  
+          } ,  
+        }, 
+      // isParent = true
+    };
+    // <span style="color: #ff0000;"></span>    
+    var zNodes =
+    [
+    {
+        "id": 0,
+        // 
+        "name": "Esophagus",
+        "open": "true",
+        "isParent": "true",
+        "pId": 1
+    },
+    {
+        "id": 2,
+        "name": "Esophagus-Adult",
+        "pId": 0,
+        "open": "true"
+    },
+    {
+        "id": 3,
+        "name": "GSE134355_Esophagus-Adult_8376",
+        "ahref": "Datasets_html/GSE134355_Esophagus-Adult_8376/GSE134355_Esophagus-Adult_8376_test.html",
+        "pId": 2,
+        "open": "true"
+    },{
+        "id": 4,
+        "name": "Esophagus-Fetal",
+        "pId": 0,
+        "open": "true"
+    },
+    {
+        "id": 5,
+        "name": "GSE103239_Esophagus-Fetal_773",
+        "ahref": "Datasets_html/GSE134355_Esophagus-Fetal_773/GSE134355_Esophagus-Fetal_773.html",
+
+        "pId": 4,
+        "open": "true"
+    }
+];
+    // $(document).ready(function(){
+    //   zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+    //   });
+    
+    // ZTreeObj.expandAll(true);
+
+
+    // let treeObj = $.fn.zTree.init($("#tree"), setting, departments);
+    
+    // treeObj.expandAll(true);    //默认展开
+    // var nodes = treeObj.getNodes();  
+    
+    // if (nodes.length > 0) {
+    //   var node = treeObj.selectNode(nodes[0]);//默认选中根节点
+    // }
+
+    var tree  = $.fn.zTree.init($('#treeDemo'), setting, zNodes);
+    tree.expandAll(tree);//默认是展开的
+
+
+    function expandTree() {
+        var tree = $.fn.zTree.getZTreeObj('treeDemo');
+        tree.expandAll(tree);
+    }
+
+    function closeTree() {
+        var tree = $.fn.zTree.getZTreeObj('treeDemo');
+        //获取 zTree 的全部节点数据将节点数据转换为简单 Array 格式
+        var zNodes = tree.transformToArray(tree.getNodes());
+        for(var i=0;i<zNodes.length;i++){
+            if(zNodes[i].level == 0){
+                console.log(zNodes[i].name);
+                //根节点展开
+                tree.expandNode(zNodes[i],true,true,false)
+            }else{
+                tree.expandNode(zNodes[i],false,true,false)
+            }
+        }
+    }
+
+
+  
+      
+    </script>
+  </body>
+</html>

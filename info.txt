@@ -1,0 +1,179 @@
+Tissue-major	Tissue-sub	Dataset	Year	PMID	GSE	Stage	Platform
+Lung	Airway	GSE123405_Lung-Adult_7786	2020	32727470	GSE123405	Adult	Drop-seq
+Lung		GSE126030_Lung-Adult_21779	2019	31624246	GSE126030	Adult	10x
+Lung		GSE130148_Lung-Adult_2306	2019	31209336	GSE130148	Adult	Drop-seq
+Lung		 GSE139534_Lung-Adult_10462	2020	33159078	GSE139534	Adult	10x
+Lung	Airway	GSE146981_Lung-Adult_27015	2020	32991815	GSE146981	Adult	10x
+Lung		GSE126030_Lung-Adult_21708	2019	31624246	GSE126030	Adult	10x
+Lung		GSE134355_Lung-Adult_8426	2020	32214235	GSE134355	Adult	Microwell-seq
+Lung		GSE134355_Lung-Adult_5672	2020	32214235	GSE134355	Adult	Microwell-seq
+Lung		GSE134355_Lung-Adult3_9113	2020	32214235	GSE134355	Adult	Microwell-seq
+Lung		GSE134355_Lung-Fetal_4526	2020	32214235	GSE134355	Fetal	Microwell-seq
+Lung		GSE134355_Lung-Fetal_3649	2020	32214235	GSE134355	Fetal	Microwell-seq
+Eye	Retina	GSE130636_Eye-Adult_5061	2019	31075224	GSE130636	Adult	10x
+Eye	Choroid	GSE135922_Eye-Adult_3953	2019	31712411	GSE135922	Adult	10x
+Eye		GSE134355_Eye-Fetal_1580	2020	32214235	GSE134355	Fetal	Microwell-seq
+Eye	Retina	GSE122970_Fetal-Adult_5958	2020	32386599	GSE122970	Fetal	10x
+Eye	Retina	GSE148077_Eye-Adult_77939	2020	32555229	GSE148077	Adult	10x
+Brain	Cerebrospinal fluid	GSE134577_Brain-Adult_9957	2020	31915375	GSE134577	Adult	Drop-seq
+Brain	Substantia nigra	GSE140231_Brain-Adult_5639	2020	32826893	GSE140231	Adult	10x
+Brain	Cortex	GSE140231_Brain-Adult_10607	2020	32826893	GSE140231	Adult	10x
+Brain	Meningeal		2020	32702313	GSE146165	Adult	10x
+Brain	Midbrain	GSE157783_Brain-Adult_22430	NA	NA	GSE157783	Adult	10x
+Brain	Cerebellar hemisphere	GSE97930_Brain-Adult_1871	2017	29227469	GSE97930	Adult	snDrop-Seq
+Brain	Cortex	GSE97930_Brain-Adult_14691	2017	29227469	GSE97930	Adult	snDrop-Seq
+Brain	Cerebellum	GSE134355_Brain-Adult_7324	2020	32214235	GSE134355	Adult	Microwell-seq
+Brain	Cervix	GSE134355_Brain-Adult_8096	2020	32214235	GSE134355	Adult	Microwell-seq
+Brain	Temporal Lobe	GSE134355_Brain-Adult_7613	2020	32214235	GSE134355	Adult	Microwell-seq
+Brain		GSE141862_Brain-Fetal_12854	2020	32732419	GSE141862	Fetal	Smart-seq2
+Brain	Pituitary	GSE142653_Brain-Fetal_3643	2020	33077725	GSE142653	Fetal	STRT-seq
+Brain		GSE76381_Brain-Fetal_1695	2016	27716510	GSE76381	Fetal	C1
+Brain		GSE134355_Brain-Fetal_1230	2020	32214235	GSE134355	Fetal	Microwell-seq
+Brain		GSE134355_Brain-Fetal_1898	2020	32214235	GSE134355	Fetal	Microwell-seq
+Brain		GSE134355_Brain-Fetal_3391	2020	32214235	GSE134355	Fetal	Microwell-seq
+Brain		GSE134355_Brain-Fetal_4517	2020	32214235	GSE134355	Fetal	Microwell-seq
+Brain	Spinal-Cord	GSE134355_Brain-Fetal_5904	2020	32214235	GSE134355	Fetal	Microwell-seq
+Intestine	Colon	Broad_Colon-Adult_62836	NA	31348891	NA	Adult	10x
+Intestine	Large Intestine	GSE103239_LargeIntestine-Adult_1186	2018	29802404	GSE103239	Adult	Smart-seq2
+Intestine	Colon	GSE125970_Colon-Adult_2623	2020	31753849	GSE125970	Adult	10x
+Intestine	Ileum	GSE125970_Ileum-Adult_5325	2020	31753849	GSE125970	Adult	10x
+Intestine	Rectum	GSE125970_Rectum-Adult_2433	2020	31753849	GSE125970	Adult	10x
+Intestine	Ascending-Colon	GSE134355_Ascending-Colon-Adult_2026	2020	32214235	GSE134355	Adult	Microwell-seq
+Intestine	Epityphlon	GSE134355_Epityphlon-Adult_3117	2020	32214235	GSE134355	Adult	Microwell-seq
+Intestine	Ileum	GSE134355_Ileum-Adult_3367	2020	32214235	GSE134355	Adult	Microwell-seq
+Intestine	JeJunum	GSE134355_JeJunum-Adult_5549	2020	32214235	GSE134355	Adult	Microwell-seq
+Intestine	Rectum	GSE134355_Rectum-Adult_5646	2020	32214235	GSE134355	Adult	Microwell-seq
+Intestine	Sigmoid-Colon	GSE134355_Sigmoid-Colon-Adult_3281	2020	32214235	GSE134355	Adult	Microwell-seq
+Intestine	Transverse-Colon	GSE134355_Transverse-Colon-Adult_5765	2020	32214235	GSE134355	Adult	Microwell-seq
+Intestine	Transverse-Colon	GSE134355_Transverse-Colon-Adult_11229	2020	32214235	GSE134355	Adult	Microwell-seq
+Intestine	Duodenum	GSE134355_Duodenum-Adult_4681	2020	32214235	GSE134355	Adult	Microwell-seq
+Intestine	LargeIntestine	GSE103239_LargeIntestine-Fetal_849	2018	29802404	GSE103239	Fetal	Smart-seq2
+Intestine	SmallIntestine	GSE103239_SmallIntestine-Fetal_868	2018	29802404	GSE103239	Fetal	Smart-seq2
+Intestine		GSE134355_Intestine-Fetal_1318	2020	32214235	GSE134355	Fetal	Microwell-seq
+Intestine		GSE134355_Intestine-Fetal_1171	2020	32214235	GSE134355	Fetal	Microwell-seq
+Intestine		GSE134355_Intestine-Fetal_9141	2020	32214235	GSE134355	Fetal	Microwell-seq
+Intestine		GSE134355_Intestine-Fetal_6931	2020	32214235	GSE134355	Fetal	Microwell-seq
+Intestine		GSE134355_Intestine-Fetal_3800	2020	32214235	GSE134355	Fetal	Microwell-seq
+Bone-Marrow		GSE117498_BMMC-Adult_5879	2019	31160568	GSE117498	Adult	InDrop
+Bone-Marrow		GSE126030_BMMC-Adult_18166	2019	31624246	GSE126030	Adult	10x
+Bone-Marrow		GSE130430_BMMC-Adult_6051	2019	31477722	GSE130430	Adult	10x
+Bone-Marrow		GSE130756_BMMC-Adult_17681	2020	32977829	GSE130756	Adult	Microwell-seq
+Bone-Marrow		GSE133181_BMMC-Adult_26962	2019	31697810	GSE133181	Adult	10x
+Bone-Marrow		GSE142999_BMMC-Adult_396	2020	32735845	GSE142999	Adult	Smart-seq2
+Bone-Marrow		GSE143002_BMMC-Adult_94	2020	32735845	GSE143002	Adult	Smart-seq2
+Bone-Marrow		GSE150774_BMMC-Adult_20083	2020	32457162	GSE150774	Adult	10x
+Bone-Marrow		GSE154109_BMMC-Adult_4320	2020	32692727	GSE154109	Adult	10x
+Bone-Marrow		GSE134355_BMMC-Adult_2261	2020	32214235	GSE134355	Adult	Microwell-seq
+Bone-Marrow		GSE134355_BMMC-Adult_6443	2020	32214235	GSE134355	Adult	Microwell-seq
+Bone-Marrow		GSE134355_BMMC-Adult_13635	2020	32214235	GSE134355	Adult	Microwell-seq
+Bone-Marrow		GSE134355_BMMC-Adult_40049	2020	32214235	GSE134355	Adult	Microwell-seq
+Umbilical-Cord-Blood		GSE141238_Umbilical-Cord-Blood-Adult_7046	2019	https://link.springer.com/article/10.1007/s41048-019-00096-5	GSE141238	Fetal	10x
+Umbilical-Cord-Blood		GSE134355_Umbilical-Cord-Blood-Adult_2150	2020	32214235	GSE134355	Fetal	Microwell-seq
+Umbilical-Cord-Blood		GSE134355_Umbilical-Cord-Blood-Adult_4444	2020	32214235	GSE134355	Fetal	Microwell-seq
+Umbilical-Cord-Blood		GSE134355_Umbilical-Cord-Blood-Fetal_5607	2020	32214235	GSE134355	Fetal	Microwell-seq
+Umbilical-Cord-Blood		GSE134355_Umbilical-Cord-Blood-Fetal_10480	2020	32214235	GSE134355	Fetal	Microwell-seq
+Liver		GSE115469_Liver-Adult_8273	2018	30348985	GSE115469	Adult	10x
+Liver		GSE136103_Liver-Adult_27071	2019	31597160	GSE136103	Adult	10x
+Liver		GSE134355_Liver-Adult_1620	2020	32214235	GSE134355	Adult	Microwell-seq
+Liver		GSE134355_Liver-Adult_4101	2020	32214235	GSE134355	Adult	Microwell-seq
+Liver		GSE134355_Liver-Adult_3747	2020	32214235	GSE134355	Adult	Microwell-seq
+Liver		EBI_Liver-Fetal_18984	2019	31597962	EBI(E-MTAB-7407)	Fetal	10x
+Liver		GSE134355_Liver-Adult_17697	2020	32214235	GSE134355	Fetal	Microwell-seq
+Heart		GSE134355_Heart-Adult_1308	2020	32214235	GSE134355	Adult	Microwell-seq
+Heart		GSE134355_Heart-Adult_1478	2020	32214235	GSE134355	Adult	Microwell-seq
+Heart		GSE134355_Heart-Fetal_4801	2020	32214235	GSE134355	Fetal	Microwell-seq
+Heart		GSE134355_Heart-Fetal_2433	2020	32214235	GSE134355	Fetal	Microwell-seq
+Stomach		GSE134355_Stomach-Adult_1755	2020	32214235	GSE134355	Adult	Microwell-seq
+Stomach		GSE134355_Stomach-Adult_2978	2020	32214235	GSE134355	Adult	Microwell-seq
+Stomach		GSE134355_Stomach-Adult_7835	2020	32214235	GSE134355	Adult	Microwell-seq
+Stomach		GSE134355_Stomach-Fetal_1288	2020	32214235	GSE134355	Fetal	Microwell-seq
+Stomach		GSE134355_Stomach-Fetal_5541	2020	32214235	GSE134355	Fetal	Microwell-seq
+Visceral-Adipose		GSE136229_Adipose-Adult_2451	2020	32066997	GSE136229	Adult	10x
+Visceral-Adipose		GSE134355_Adipose-Adult_1330	2020	32214235	GSE134355	Adult	Microwell-seq
+Visceral-Adipose	Omentum	GSE134355_Adipose-Adult_1487	2020	32214235	GSE134355	Adult	Microwell-seq
+Visceral-Adipose	Omentum	GSE134355_Adipose-Adult_9971	2020	32214235	GSE134355	Adult	Microwell-seq
+Visceral-Adipose	Omentum	GSE134355_Adipose-Adult_1354	2020	32214235	GSE134355	Adult	Microwell-seq
+Esophagus		GSE134355_Esophagus-Adult_2648	2020	32214235	GSE134355	Adult	Microwell-seq
+Esophagus		GSE134355_Esophagus-Adult_8376	2020	32214235	GSE134355	Adult	Microwell-seq
+Esophagus		GSE103239_Esophagus-Fetal_773	2018	29802404	GSE103239	Fetal	Smart-seq2
+Thymus		GSE153117_Thymus-Adult_5297	2020	NA	GSE153117	Fetal	10x
+Thymus		GSE134355_Thymus-Fetal_2448	2020	32214235	GSE134355	Adult	Microwell-seq
+Thymus		GSE134355_Thymus-Fetal_2068	2020	32214235	GSE134355	Adult	Microwell-seq
+Bladder		GSE129845_Bladder-Adult_13357	2019	31462402	GSE129845	Adult	10x
+Bladder		GSE134355_Bladder-Adult_1267	2020	32214235	GSE134355	Adult	Microwell-seq
+Bladder		GSE134355_Bladder-Adult_2463	2020	32214235	GSE134355	Adult	Microwell-seq
+Muscle		GSE143704_Muscle-Adult_21989	2020	32624006	GSE143704	Adult	10X
+Muscle		GSE134355_Muscle-Adult_7439	2020	32214235	GSE134355	Adult	Microwell-seq
+Muscle		GSE134355_Muscle-Fetal_14463	2020	32214235	GSE134355	Fetal	Microwell-seq
+Gall-Bladder		GSE134355_Gall-Bladder-Adult_8905	2020	32214235	GSE134355	Adult	Microwell-seq
+Gall-Bladder		GSE134355_Gall-Bladder-Adult_5031	2020	32214235	GSE134355	Adult	Microwell-seq
+Thyroid		GSE134355_Thyroid-Adult_6319	2020	32214235	GSE134355	Adult	Microwell-seq
+Thyroid		GSE134355_Thyroid-Adult_6167	2020	32214235	GSE134355	Adult	Microwell-seq
+Artery		GSE134355_Artery-Adult_9652	2020	32214235	GSE134355	Adult	Microwell-seq
+Fallopian-Tube		GSE134355_Fallopian-Tube-Adult_4587	2020	32214235	GSE134355	Adult	Microwell-seq
+Pleura		GSE134355_Pleura-Adult_9942	2020	32214235	GSE134355	Adult	Microwell-seq
+Tonsil		GSE115006_Tonsil-Adult_6000	2018	29967419	GSE115006	Adult	10x
+Ureter		GSE134355_Ureter-Adult_1886	2020	32214235	GSE134355	Adult	Microwell-seq
+Ovary		GSE143380_Ovary-Adult_11108	2020	33257808	GSE143380	Adult	10x
+Ovary		GSE118127_Ovary-Adult_40868	2019	31320652	GSE118127	Adult	10x
+Nose	Olfactory neuroepithelium+respiratory epithelium	GSE139522_Nose-Adult_33060	2020	32066986	GSE139522	Adult	10x
+Adrenal-gland	Adrenal-gland	GSE134355_Adrenal-Gland-Adult_8114	2020	32214235	GSE134355	Adult	Microwell-seq
+Adrenal-gland	Adrenal-gland	GSE134355_Adrenal-Gland-Adult_8083	2020	32214235	GSE134355	Adult	Microwell-seq
+Adrenal-gland	Adrenal-gland	GSE134355_Adrenal-Gland-Fetal_9875	2020	32214235	GSE134355	Fetal	Microwell-seq
+Adrenal-gland	Adrenal-gland	GSE134355_Adrenal-Gland-Adult_8114	2020	32214235	GSE134355	Fetal	Microwell-seq
+Airway_epithelium		GSE134355_Trachea-Adult_9949	2020	32214235	GSE134355	Adult	Microwell-seq
+Airway_epithelium	BronchialEpithelial	GSE102580_Airway-Adult_3698	2018	30069046	GSE102580	Adult	Indrop
+Bone	Calvaria	GSE134355_Bone-Fetal_5129	2020	32214235	GSE134355	Fetal	Microwell-seq
+Bone	Rib	GSE134355_Bone-Fetal_1432	2020	32214235	GSE134355	Fetal	Microwell-seq
+Bone	Rib	GSE134355_Bone-Fetal_4560	2020	32214235	GSE134355	Fetal	Microwell-seq
+Breast	Breast	GSE138536_Breast-Fetal_1041	2020	31974247	GSE138536	Adult	Smart-seq2
+Breast	Adult Human Breast Epithelium	GSE113196_Breast-Adult_24644	2019	31428694	GSE113196	Adult	10x
+Choroid	RPE/choroid	GSE149100_Choroid-Adult_9539	2020	32531351	GSE149100	Adult	10x
+Choroid	RPE/choroid	GSE149100_Choroid-Fetal_17229	2020	32531351	GSE149100	Fetal	10x
+Decidua		PMID30429548_Decidua-Fetal_36164		30429548	NA	Fetal	10x
+Decidua		PMID30429548_Decidua-Fetal_4326		30429548	NA	Fetal	Smart-seq2
+Decidua		PMID30429548_Decidua-Fetal_7119		30429548	NA	Fetal	Smart-seq2
+female-Gonad			2021	32214235	GSE134355	Fetal	Microwell-seq
+female-Gonad			2022	32214235	GSE134355	Fetal	Microwell-seq
+male-Gonad			2023	32214235	GSE134355	Fetal	Microwell-seq
+male-Gonad			2024	32214235	GSE134355	Fetal	Microwell-seq
+Peritoneum	Peritoneal dialysis fluid & Peritoneal tissue	GSE130888_Peritoneum-Adult_17198	2019	31167927	GSE130888	Adult	10x
+Spleen		GSE134355_Bone-Adult_15664	2020	32214235	GSE134355	Adult	Microwell-seq
+Uterus	endometrium	GSE111976_Uterus-Adult_70165	2020	32929266	GSE111976	Adult	10x
+Uterus	Uterus	GSE134355_Uterus-Adult_7694	2020	32214235	GSE134355	Adult	Microwell-seq
+Placenta		PMID30429548_Placenta-Adult_18547	2018	30429548	NA	Adult	10x
+Placenta		GSE131696_Placenta-Adult_8589	2020	32772088	GSE131696	Adult	10x
+Placenta	Chorionic-Villus	GSE134355_Placenta-Adult_9898	2020	32214235	GSE134355	Adult	Microwell-seq
+Placenta		GSE134355_Placenta-Adult_9595	2020	32214235	GSE134355	Adult	Microwell-seq
+Placenta		PMID28830992_Placenta-Adult_18871	2017	28830992	NA	Adult	10x
+Prostate		GSE145843_Prostate-Adult_107205	2020	32497356	GSE145843	Adult	10x
+Prostate		GSE134355_Prostate-Adult_2445	2020	32214235	GSE134355	Adult	Microwell-seq
+Prostate		GSE117403_Prostate-Adult_107205	2020	30566875	GSE117403	Adult	10x
+Pancreas		GSE84133_Pancreas-Adult_8569	2016	27667365	GSE84133	Adult	InDrop
+Pancreas		GSE85241_Pancreas-Adult_2456	2016	27693023	GSE85241	Adult	CEL-seq2
+Pancreas		PMID27667667_Pancreas-Adult_1067	2016	27667667	NA	Adult	Smart-seq2
+Pancreas		GSE134355_Pancreas-Adult_9727	2020	32214235	GSE134355	Adult	Microwell-seq
+Pancreas		GSE134355_Pancreas-Fetal_8977	2020	32214235	GSE134355	Fetal	Microwell-seq
+Pancreas		GSE134355_Pancreas-Fetal_6939	2020	32214235	GSE134355	Fetal	Microwell-seq
+Pancreas		GSE134355_Pancreas-Fetal_2830	2020	32214235	GSE134355	Fetal	Microwell-seq
+Kidney		GSE109205_Kidney-Fetal_4187	2018	30166318	GSE109205	Fetal	Drop-seq
+Kidney		GSE134355_Kidney-Fetal_3057	2020		GSE134355	Fetal	Microwell-seq
+Kidney		GSE134355_Kidney-Fetal_4511	2020		GSE134355	Fetal	Microwell-seq
+Kidney		GSE134355_Kidney-Fetal_4939	2020		GSE134355	Fetal	Microwell-seq
+Kidney		GSE134355_Kidney-Fetal_9932	2020			Fetal	Microwell-seq
+Kidney		PMID31597962_Kidney-Fetal_2748	2020	31597962	NA	Fetal	10x
+Kidney		PMID31604275_Kidney-Adult_9452		31604275		Adult	10x
+Kidney		GSE109564_Kidney-Adult_4487			GSE109564	Adult	Indrop
+Kidney		GSE114156_Kidney-Adult_3128			GSE114156	Adult	Indrop
+Kidney		GSE128992_Kidney-Adult_2663			GSE128992	Adult	10x
+Kidney		GSE131685_Kidney-Adult_21970			GSE131685	Adult	10x
+Kidney		GSE145927_Kidney-Adult_50126			GSE145927	Adult	10x
+Kidney		GSE159805_Kidney-Adult_872			GSE159805	Adult	10x
+Kidney		GSE134355_Kidney-Adult_8877	2020	32214235	GSE134355	Adult	Microwell-seq
+Kidney		GSE134355_Kidney-Adult_9966	2020	32214235	GSE134355	Adult	Microwell-seq
+Kidney		GSE134355_Kidney-Adult_3849	2020	32214235	GSE134355	Adult	Microwell-seq
+Testis	Male Gonad	GSE112013_Testis-Adult_6490	2018	30315278	GSE112013	Adult	10x
+Testis		GSE149512_Testis-Adult_44788	2020	33173058	GSE149512		
+Testis	Caput Epididymis	GSE148963_Testis-Adult_5299	2020	32855272	GSE148963	Adult	10x
+Testis		GSE130151_Testis-Adult_3280	2019	31462300	GSE130151	Adult	10x
+Testis		GSE120506_Testis-Fetal_1340	2018	30315278	GSE120506	Fetal(13 month)	10x
