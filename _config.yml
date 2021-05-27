@@ -18,6 +18,7 @@ navbar-links:
   Home: "/"
   TissueTree: "TissueTree"
   CelltypeTree: "CelltypeTree"
+  Datasets: "Datasets"
 
 # --- Logo --- #
 
